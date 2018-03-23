@@ -48,7 +48,7 @@ plot([72,72],[0,300], color ='gray', linewidth=2.5, linestyle="-")
 plot([76,76],[0,300], color ='gray', linewidth=2.5, linestyle="-")
 
 plt.figtext(74,300,'figure words',color='green')  
-plt.annotate('x_i~N(μ_i,σ_i^2)',xy=(74,300),xytext=(80,320),bbox=dict(boxstyle="round", fc="w"),arrowprops=dict(facecolor='gray', shrink=0.05))
+plt.annotate(r'$x_i$~N($μ_i,σ_i^2$)',xy=(74,300),xytext=(80,320),bbox=dict(boxstyle="round", fc="w"),arrowprops=dict(facecolor='gray', shrink=0.05))
 
 # 设置轴记号
 xticks(lis1)

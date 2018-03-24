@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pylab import *
 import seaborn as sns
+from matplotlib.font_manager import *
 dataFile = 'parkingvalue.mat'  
 d = scio.loadmat(dataFile)  
 # print type(data) 
@@ -35,52 +36,28 @@ print(lab)
 # print(day10)
 lis1 = [int(i) for i in range(0,97,8)]
 print(lis1)
-
+myfont = FontProperties(fname=r'C:\Windows\Fonts\MSYH.TTC',size=14)
 # figure(figsize=(8,6), dpi=300)
-subplot(1,1,1)
+plt.subplot(1,1,1)
 sns.set_style('darkgrid')
 x = np.linspace(0,96,256,endpoint=True)
 for i in range(10):
-	plot(li[i],linewidth=1.0,linestyle='-',label=lab[i])
-legend(loc='lower left')
+	plt.plot(li[i],linewidth=1.0,linestyle='-',label=lab[i])
+plt.legend(loc='lower left')
+plt.legend(prop=myfont)
 plt.axis([0,100,0,350])
-plot([72,72],[0,300], color ='gray', linewidth=2.5, linestyle="-")
-plot([76,76],[0,300], color ='gray', linewidth=2.5, linestyle="-")
+plt.plot([72,72],[0,300], color ='gray', linewidth=2.5, linestyle="-")
+plt.plot([76,76],[0,300], color ='gray', linewidth=2.5, linestyle="-")
 
-plt.figtext(74,300,'figure words',color='green')  
-plt.annotate(r'$x_i$~N($μ_i,σ_i^2$)',xy=(74,300),xytext=(80,320),bbox=dict(boxstyle="round", fc="w"),arrowprops=dict(facecolor='gray', shrink=0.05))
+# plt.figtext(74,300,'figure words',color='green')  
+plt.annotate(r'$x_i$~N($μ_i,σ_i^2$)',fontsize=20,xy=(74,300),xytext=(80,320),bbox=dict(boxstyle="round", fc="w"),arrowprops=dict(facecolor='gray', shrink=0.05))
+plt.xticks(lis1,fontsize=16)
+plt.yticks([0,50,100,150,200,250,300,350],fontsize=16)
+plt.xlabel('Time', fontsize=20)
+plt.ylabel('Number of Parking Space', fontsize=20)
 
-# 设置轴记号
-xticks(lis1)
-yticks([0,50,100,150,200,250,300,350])
-# xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi],
-#        [r'$-\pi$', r'$-\pi/2$', r'$0$', r'$+\pi/2$', r'$+\pi$'])
-
-# yticks([-1, 0, +1],
-#        [r'$-1$', r'$0$', r'$+1$'])
-# 在屏幕上显示
-show()
-
-# figure(figsize=(8,6), dpi=80)
-
-# # 创建一个新的 1 * 1 的子图，接下来的图样绘制在其中的第 1 块（也是唯一的一块）
-# subplot(1,1,1)
-
-# X = np.linspace(-np.pi, np.pi, 256,endpoint=True)
-# C,S = np.cos(X), np.sin(X)
-# # 绘制余弦曲线，使用蓝色的、连续的、宽度为 1 （像素）的线条
-# plot(X, C, color="blue", linewidth=1.0, linestyle="-")
-
-# # 绘制正弦曲线，使用绿色的、连续的、宽度为 1 （像素）的线条
-# plot(X, S, color="r", lw=4.0, linestyle="-")
-
-# plt.axis([-4,4,-1.2,1.2])
-# # 设置轴记号
-
-# xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi],
-#        [r'$-\pi$', r'$-\pi/2$', r'$0$', r'$+\pi/2$', r'$+\pi$'])
-
-# yticks([-1, 0, +1],
-#        [r'$-1$', r'$0$', r'$+1$'])
-# # 在屏幕上显示
-# show()
+fig = plt.gcf()
+# fig.patch.set_facecolor('ghostwhite')
+fig.set_size_inches(15, 8)
+fig.savefig('parkingvalue-300.tiff', dpi=300, bbox_inches='tight')
+plt.show()
